@@ -14,6 +14,7 @@ Take a look at the [ERD](https://prismaliser.app?code=Ly8gVGhpcyBpcyB5b3VyIFByaX
 - [Fastify](https://www.fastify.io/) - Fast and low overhead web framework, for Node.js
 - [PostgreSQL](https://www.postgresql.org/) - A powerful, open source object-relational database
 - [Prisma ORM](https://www.prisma.io/) - Next-generation Node.js and TypeScript ORM
+- [Zod](https://zod.dev/) - TypeScript-first schema validation with static type inference
 - [pNPM](https://pnpm.io/) - Fast, disk space efficient package manager
 
 <!-- LIVE DEMO -->
