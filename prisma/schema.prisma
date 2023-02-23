@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id               String          @id @default(uuid()) // This is the primary key
+  name             String
+  age              Int
+  email            String          @unique
+  role             Role            @default(USER)
+  writtenPosts     Post[]          @relation("WrittenPosts") // This is the custom relation between a user and the posts they have written (one-to-many)
+  favouritePosts   Post[]          @relation("FavouritePosts")
+  userPreference   UserPreference? @relation(fields: [userPreferenceId], references: [id]) // This is the optional relation between a user and their preferences (one-to-one)
+  userPreferenceId String?         @unique
+
+  @@unique([name, age]) // if a user has the same name and age, they are the same user, and therefore it will throw an error if you try to create another user with the same name and age
+  @@index([email])
+}
+
+model UserPreference {
+  id           String  @id @default(uuid())
+  emailUpdates Boolean
+  user         User?
+}
+
+model Post {
+  id             String     @id @default(uuid())
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+  title          String
+  averageRating  Float
+  author         User       @relation("WrittenPosts", fields: [authorId], references: [id])
+  authorId       String
+  favouritedBy   User?      @relation("FavouritePosts", fields: [favouritedById], references: [id])
+  favouritedById String?
+  categories     Category[] // This is the relation between a post and the categories it belongs to (many-to-many)
+}
+
+model Category {
+  id    String @id @default(uuid())
+  name  String @unique
+  posts Post[] // This is the relation between a category and the posts it belongs to (many-to-many)
+}
+
+enum Role {
+  USER
+  ADMIN
+}
