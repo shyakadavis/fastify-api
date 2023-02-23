@@ -34,11 +34,11 @@ To get a local copy up and running follow these simple steps.
 - pNPM package manager (But you can use whichever you prefer)
 - Postgres
 
-If you are wondering why pnpm, take a look at this [article](https://www.atatus.com/blog/npm-vs-yarn-vs-pnpm/)
+If you are wondering why I like pnpm, take a look at this [article](https://www.atatus.com/blog/npm-vs-yarn-vs-pnpm/)
 
 ### Installation
 
-1. Clone the repo 🌀
+1. 🌀 Clone the repo
 
    ```sh
    git clone https://github.com/shyakadavis/fastify-api.git yourDirName
@@ -52,18 +52,30 @@ If you are wondering why pnpm, take a look at this [article](https://www.atatus.
 
    ⚠️ The `.` will clone it to the current directory so make sure you are inside your project folder first.
 
-2. Install packages 📦.
+2. 📦 Install packages.
 
    ```sh
    pnpm install
    ```
 
-3. Rename the `.env.example` file to `.env` and add the relevant keys
+3. 📛 Rename the `.env.example` file to `.env` and add the relevant keys
 
-4. Start your local development server
+4. 🎥 Run migrations
+
+   ```sh
+    pnpm exec prisma migrate dev --name your_migration_file_name
+   ```
+
+5. 🐕 🏃Start your local development server
 
    ```sh
    pnpm dev
+   ```
+
+6. 📺 If you want to visualize your data, you can use [prisma studio](https://www.prisma.io/studio).
+
+   ```sh
+    pnpm exec prisma studio
    ```
 
 <!-- CONTRIBUTING -->
